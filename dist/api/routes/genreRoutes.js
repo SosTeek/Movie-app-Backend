@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const controllers_1 = require("../controllers");
+const middlewares_1 = require("../../middlewares");
+const validators_1 = require("../../validators");
+const genreRoutes = (0, express_1.Router)();
+genreRoutes.get('/', (0, middlewares_1.exceptionHandler)(controllers_1.GenreController.findAll));
+genreRoutes.post('/', (0, middlewares_1.exceptionHandler)(middlewares_1.Validator.check(validators_1.createGenre)), (0, middlewares_1.exceptionHandler)(controllers_1.GenreController.create));
+genreRoutes.patch('/:id', (0, middlewares_1.exceptionHandler)(controllers_1.GenreController.update));
+genreRoutes.delete('/:id', (0, middlewares_1.exceptionHandler)(controllers_1.GenreController.delete));
+exports.default = genreRoutes;
